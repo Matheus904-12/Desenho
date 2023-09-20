@@ -102,9 +102,8 @@ canvas {
 }
 
 .button__shape {
-    font-size: 24px; /* Tamanho do ícone */
-    width: 90px; /* Largura fixa */
-    height: 20px; /* Altura fixa */
+    height: 30px; /* Reduzindo a altura */
+    width: 100px; /* Definindo uma largura fixa */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -119,26 +118,3 @@ canvas {
 .button__shape:hover {
     background-color: #f2f2f2;
 }
-
-.button__shape .material-icons {
-    vertical-align: middle; /* Alinha o ícone verticalmente */
-}
-
-.tool {
-    margin-bottom: 10px;
-    font-size: 16px;
-    padding: 5px 10px;
-    cursor: pointer;
-    border: none;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-  }
-  
-  .tool.active {
-    background-color: #ccc;
-  }
-  
-  .options .tool {
-    display: block;
-  }
-  

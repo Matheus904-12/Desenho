@@ -1,53 +1,44 @@
 const canvas = document.querySelector("canvas")
 const ctx = canvas.getContext("2d")
+
 const inputColor = document.querySelector(".input__color")
 const tools = document.querySelectorAll(".button__tool")
 const sizeButtons = document.querySelectorAll(".button__size")
 const buttonClear = document.querySelector(".button__clear")
-const shapeButtons = document.querySelectorAll(".button__shape")
 
 let brushSize = 20
 let isPainting = false
 let activeTool = "brush"
-let activeShape = null
 
 inputColor.addEventListener("change", ({ target }) => {
     ctx.fillStyle = target.value
 })
 
-canvas.addEventListener("mousedown", function(event){
+canvas.addEventListener("mousedown", ({ clientX, clientY }) => {
     isPainting = true
 
-    if (activeShape) {
-        drawShape(event.clientX, event.clientY)
-    } else {
+    if (activeTool == "brush") {
+        draw(clientX, clientY)
+    }
+
+    if (activeTool == "rubber") {
+        erase(clientX, clientY)
+    }
+})
+
+canvas.addEventListener("mousemove", ({ clientX, clientY }) => {
+    if (isPainting) {
         if (activeTool == "brush") {
-            draw(event.clientX, event.clientY)
+            draw(clientX, clientY)
         }
 
         if (activeTool == "rubber") {
-            erase(event.clientX, event.clientY)
+            erase(clientX, clientY)
         }
     }
 })
 
-canvas.addEventListener("mousemove", function(event){
-    if (isPainting) {
-        if (activeShape) {
-            drawShape(event.clientX, event.clientY)
-        } else {
-            if (activeTool == "brush") {
-                draw(event.clientX, event.clientY)
-            }
-
-            if (activeTool == "rubber") {
-                erase(event.clientX, event.clientY)
-            }
-        }
-    }
-})
-
-canvas.addEventListener("mouseup", function(event){
+canvas.addEventListener("mouseup", ({ clientX, clientY }) => {
     isPainting = false
 })
 
@@ -77,16 +68,6 @@ const erase = (x, y) => {
     ctx.fill()
 }
 
-const drawShape = (x, y) => {
-    if (activeShape === "square") {
-        // Implemente aqui a lógica para desenhar um quadrado
-    } else if (activeShape === "circle") {
-        // Implemente aqui a lógica para desenhar um círculo
-    } else if (activeShape === "rectangle") {
-        // Implemente aqui a lógica para desenhar um retângulo
-    }
-}
-
 const selectTool = ({ target }) => {
     const selectedTool = target.closest("button")
     const action = selectedTool.getAttribute("data-action")
@@ -107,25 +88,12 @@ const selectSize = ({ target }) => {
     brushSize = size
 }
 
-const selectShape = ({ target }) => {
-    const selectedShape = target.closest("button")
-    const shape = selectedShape.getAttribute("data-shape")
-
-    shapeButtons.forEach((button) => button.classList.remove("active"))
-    selectedShape.classList.add("active")
-    activeShape = shape
-}
-
 tools.forEach((tool) => {
     tool.addEventListener("click", selectTool)
 })
 
 sizeButtons.forEach((button) => {
     button.addEventListener("click", selectSize)
-})
-
-shapeButtons.forEach((button) => {
-    button.addEventListener("click", selectShape)
 })
 
 buttonClear.addEventListener("click", () => {

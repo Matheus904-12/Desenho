@@ -4,12 +4,12 @@ const inputColor = document.querySelector(".input__color")
 const tools = document.querySelectorAll(".button__tool")
 const sizeButtons = document.querySelectorAll(".button__size")
 const buttonClear = document.querySelector(".button__clear")
-const shapeButtons = document.querySelectorAll(".button__shape")
+const shapeButtons = document.querySelectorAll(".button__shape")  // Novo
 
 let brushSize = 20
 let isPainting = false
 let activeTool = "brush"
-let activeShape = null
+let activeShape = null  // Novo
 
 inputColor.addEventListener("change", ({ target }) => {
     ctx.fillStyle = target.value
@@ -78,12 +78,13 @@ const erase = (x, y) => {
 }
 
 const drawShape = (x, y) => {
+    // Implemente aqui a lógica para desenhar as formas (quadrado, círculo, retângulo)
     if (activeShape === "square") {
-        // Implemente aqui a lógica para desenhar um quadrado
+        // Desenhar quadrado
     } else if (activeShape === "circle") {
-        // Implemente aqui a lógica para desenhar um círculo
+        // Desenhar círculo
     } else if (activeShape === "rectangle") {
-        // Implemente aqui a lógica para desenhar um retângulo
+        // Desenhar retângulo
     }
 }
 

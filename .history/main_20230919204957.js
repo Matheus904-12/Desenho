@@ -77,13 +77,13 @@ const erase = (x, y) => {
     ctx.fill()
 }
 
-const drawShape = (x, y) => {
+ drawShape = (x, y) => {
     if (activeShape === "square") {
         // Implemente aqui a lógica para desenhar um quadrado
     } else if (activeShape === "circle") {
         // Implemente aqui a lógica para desenhar um círculo
     } else if (activeShape === "rectangle") {
-        // Implemente aqui a lógica para desenhar um retângulo
+        // Implemente aconstqui a lógica para desenhar um retângulo
     }
 }
 
